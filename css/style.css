@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&display=swap");
+
+:root {
+  --Gray-1: #333;
+  --Gray-2: #4f4f4f;
+  --Gray-3: #828282;
+  --pinkish: #ce036a;
+}
+
+body {
+  font-family: "Poppins";
+  margin: 0;
+  padding: 35px;
+  caret-color: transparent;
+  box-sizing: border-box;
+  background-color: #3a3a3a;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+input[type="range"] {
+  accent-color: var(--pinkish);
+}
+
+.music-player {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: max-content;
+  column-gap: 20px;
+}
+
+.left-section {
+  border-radius: 21px;
+  background-color: #f3f3f3;
+  padding: 40px 30px 40px 50px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 60px;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+.wsa-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.song-list-container {
+  flex-direction: column;
+  display: flex;
+}
+
+/* Classes added by JS*/
+.items-list-container {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  padding: 6px;
+}
+
+.item-img {
+  flex-grow: 0;
+}
+
+.track-year {
+  color: var(--Gray-3);
+  font-family: "Poppins";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.track-data-container {
+  flex-grow: 1;
+}
+
+.track-title,
+.title-duration {
+  color: var(--Gray-1);
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 110.5%;
+}
+
+.track-artist {
+  color: var(--Gray-2);
+  font-family: "Poppins";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 110.5%;
+}
+
+.current-song {
+  color: var(--pinkish);
+}
+
+/* Class values ende by JS */
+
+/* RHS OF Container */
+
+.player-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-radius: 21px;
+  width: 70px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.thumbnail-container {
+  padding: 100px;
+  border-radius: 25px;
+  background: linear-gradient(0deg, #d9d9d9 0%, #d9d9d9 100%), #fff;
+}
+
+.track-details {
+  margin-top: 20px;
+  text-align: center;
+  row-gap: 5px;
+}
+
+#player-title {
+  font-weight: 600;
+  font-family: "Poppins";
+  color: var(--Gray-1);
+  font-size: 18px;
+  font-style: normal;
+  line-height: 110.5%;
+}
+
+#player-description {
+  font-weight: 400;
+  font-family: "Poppins";
+  color: var(--Gray-2);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 110.5%;
+}
+
+#thumbnail {
+  max-width: 100%;
+  height: auto;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+
+.track-progress {
+  width: 397px;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+#progress {
+  position: absolute;
+  top: 16;
+}
+
+.time {
+  color: var(--Gray-3);
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110.5%;
+}
+
+#current-time {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#time-left {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 8px 0;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  height: -6px;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 4px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: -6px;
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+}
+
+.btn-group > button {
+  cursor: pointer;
+}
+
+.control-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--pinkish);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#play-pause {
+  margin: 0 50px;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.volume-range {
+  width: 310px !important;
+}

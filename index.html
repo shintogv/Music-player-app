@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player - Level 2</title>
+    <link rel="stylesheet" href="./css/style1.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/logo/wsalogo1.png"
+      type="image/x-icon"
+    />
+  </head>
+
+  <body>
+    <div class="music-player">
+      <section class="left-section">
+        <div class="wsa-logo-container">
+          <img src="./assets/logo/wsa-logo.svg" alt="WSA Logo" />
+        </div>
+        <div class="songs-list-container">
+          <h2>Track List</h2>
+          <div id="song-list"></div>
+        </div>
+      </section>
+      <!-- Player with controls -->
+      <div class="player-container">
+        <div class="thumbnail-container">
+          <img
+            src="./assets/icons/music-icon.svg"
+            alt="Thumbnail"
+            id="thumbnail"
+          />
+        </div>
+        <div class="track-details">
+          <p id="player-title"></p>
+          <p id="player-description"></p>
+        </div>
+        <div class="controls">
+          <div class="track-progress">
+            <input
+              type="range"
+              id="progress"
+              min="0"
+              max="100"
+              value="0"
+              step="1"
+              style="padding: 0"
+            />
+            <div class="time" id="current-time">00:00</div>
+            <div class="time" id="time-left">00:00</div>
+          </div>
+          <div class="btn-group">
+            <button class="control-btn" id="shuffle">
+              <img src="./assets/icons/shuffle.svg" alt="Shuffle" id="shuffle-img" />
+            </button>
+            <button class="next-prev-btn" id="prev">
+              <img src="./assets/icons/prev.svg" alt="Previous" />
+            </button>
+            <button id="play-pause">
+              <img src="./assets/icons/pause-button.svg" alt="Pause" />
+            </button>
+            <button class="next-prev-btn" id="next">
+              <img src="./assets/icons/next.svg" alt="Next" />
+            </button>
+            <button class="control-btn" id="repeat">
+              <img src="./assets/icons/loop.svg" alt="Loop" />
+            </button>
+          </div>
+          <!-- Volume and playback speed -->
+           <!-- Volume -->
+          <div class="bottom-controls">
+<div class="volume-container">
+            <img src="./assets/icons/volume-low.svg" alt="Volume Low" />
+            <input
+              type="range"
+              id="volume"
+              min="0"
+              max="1"
+              step="0.1"
+              value="1"
+              class="volume-range"
+            />
+            <img src="./assets/icons/volume-high.svg" alt="Volume High" />
+          </div>
+            </button>
+            <!-- Playback Speed -->
+            <div class="speed-container">
+  <button id="speed-btn">
+    <img src="./assets/icons/headphone.svg" alt="Headphone" /> Playback Speed <span class="caret">▲</span>
+  </button>
+  <ul id="speed-options">
+    <li data-speed="2">2x</li>
+    <li data-speed="1.5">1.5x</li>
+    <li data-speed="1.25">1.25x</li>
+    <li data-speed="1" class="active">Normal</li>
+    <li data-speed="0.75">0.75x</li>
+    <li data-speed="0.50">0.50x</li>
+    <li data-speed="0.25">0.25x</li>
+  </ul>
+</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="popup-modal" id="popup-modal">
+      <div class="modal-content">
+        <div class="modal-image-container">
+          <span class="close" id="close-modal">
+            <img src="./assets/icons/close.svg" alt="Close" />
+          </span>
+          <img src="./assets/dummy-pop.jpg" alt="Dummy Popup" id="preview-image">
+          <p class="verified-badge" id="verified">
+            <img src="./assets/icons/verified.svg" alt="Verified" /> Verified Artist
+          </p>
+          <p id="preview-artist">Artist</p>
+        </div>
+
+        <div id="previewDetails">
+          <div class="preview-status">
+            <h1 id="follower-count">12354</h1>
+            <p>Followers</p>
+            <h1 id="listener-count">78141636</h1>
+            <p>Monthly Listeners</p>
+          </div>
+          <p id="preview-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab id aliquam repellendus a, esse omnis! Exercitationem ducimus cum molestias et illo quibusdam, dolorum explicabo voluptatum fugit alias impedit, reprehenderit accusamus!
+            Necessitatibus voluptas distinctio ut inventore consectetur laudantium possimus vero odit iure aspernatur minima velit quaerat, itaque expedita, pariatur suscipit eaque perspiciatis iste. Quia sint vero corporis corrupti, hic eum excepturi.
+            Corrupti odio possimus est ullam quibusdam, similique et quidem quaerat assumenda quasi sed perspiciatis iure recusandae velit non itaque ut natus sequi voluptates totam earum quia beatae. Nemo, soluta repellat.
+            Doloremque animi distinctio minus qui inventore dolorem cum sit! Iusto suscipit, voluptatibus nisi fuga atque, praesentium voluptates quasi temporibus tenetur quos voluptate ratione inventore nesciunt in officiis commodi nobis pariatur?
+            Quo earum reprehenderit delectus culpa doloremque rem necessitatibus dolor? Repudiandae veritatis harum voluptatibus laborum cum mollitia magnam quibusdam voluptates. Velit ipsa cum eaque similique molestias repellendus sequi maiores magnam fuga.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="./javascript/script1.js"></script>
+  </body>
+</html>
+
+<!-- <div class="item-container setAttributr ="data-imdex">
+<div class="item-img">
+<img src="" alt="image outline" />
+</div>
+
+<div class="track-data-container">
+<p class ="track-title">Title</p>
+<p class ="track-artist">Artist</p>
+</div>
+
+<div class="track-duration-conatiner">
+<p class= "track-duration">duration</p>
+<p class ="track-year">year</p>
+</div>
+</div> -->
