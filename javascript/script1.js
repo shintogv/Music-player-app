@@ -81,10 +81,17 @@ document.addEventListener("DOMContentLoaded", function () {
   let isShuffle = false;
   let shuffledSongs = [...songs]; // spread operator to copy from original list
 
+  // Shuffle button event listener
   shuffleBtn.addEventListener("click", () => {
     isShuffle = !isShuffle;
 
     if (isShuffle) {
+      // 🔹 Turn OFF repeat if shuffle is enabled
+      isRepeat = false;
+      audio.loop = false;
+      repeatBtn.innerHTML =
+        '<img src="./assets/icons/loop.svg" alt="Repeat Off">';
+
       // Create shuffled copy
       shuffledSongs = [...songs];
       for (let i = shuffledSongs.length - 1; i > 0; i--) {
@@ -284,6 +291,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Update progress BAR
   function updateProgress() {
     if (audio.duration) {
       progress.value = audio.currentTime;
@@ -359,8 +367,17 @@ document.addEventListener("DOMContentLoaded", function () {
     highlightCurrentSong();
   });
 
+  // Repeat Button
   repeatBtn.addEventListener("click", () => {
     isRepeat = !isRepeat;
+
+    if (isRepeat) {
+      // 🔹 Turn OFF shuffle if repeat is enabled
+      isShuffle = false;
+      shuffleBtn.innerHTML =
+        '<img src="./assets/icons/shuffle.svg" alt="Shuffle Off">';
+    }
+
     audio.loop = isRepeat;
     repeatBtn.innerHTML = isRepeat
       ? '<img src="./assets/icons/loop-highlighted.svg" alt="Repeat On">'
