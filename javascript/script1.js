@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
       src: "./data/sweet-child-o-mine.mp3",
       artist: "Guns N' Roses",
       year: 1987,
+      isVerified: true,
+      followers: 12,
+      monthlyListeners: 1500,
+      description:
+        "'Sweet Child O’ Mine' by Guns N’ Roses is a classic rock anthem from the late 1980s, known for its iconic opening guitar riff and heartfelt lyrics. The song blends raw energy with emotional depth, capturing themes of love, nostalgia, and admiration. It remains one of the band's most beloved and instantly recognizable tracks.",
     },
     {
       title: "Sounds of Someday",
@@ -17,6 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
       src: "./data/sounds-of-someday.mp3",
       artist: "Radio Company",
       year: 2019,
+      isVerified: true,
+      followers: 12,
+      monthlyListeners: 1500,
+      description:
+        "'Sounds of Someday' by Radio Company is a heartfelt ballad that explores the themes of hope and longing. With its soothing melodies and poignant lyrics, the song captures the essence of looking forward to a brighter future while reflecting on the past.",
     },
     {
       title: "Summer of 69",
@@ -26,6 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
       src: "./data/summer-of-69.mp3",
       artist: "Bryan Adams",
       year: 1984,
+      isVerified: true,
+      followers: 12,
+      monthlyListeners: 1500,
+      description:
+        "'Summer of 69' by Bryan Adams is a nostalgic rock anthem that captures the spirit of youthful adventure and the passage of time. With its catchy guitar riffs and heartfelt lyrics, the song reminisces about the carefree days of summer and the memories that last a lifetime.",
     },
     {
       title: "Nothing Else Matters",
@@ -35,6 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
       src: "./data/nothing-else-matters.mp3",
       artist: "Metallica",
       year: 1991,
+      isVerified: true,
+      followers: 12,
+      monthlyListeners: 1500,
+      description:
+        "\"Nothing Else Matters\" by Metallica is a powerful ballad that showcases the band's softer, emotional side. With its haunting melody and introspective lyrics, the song speaks about trust, love, and staying true to oneself. It's one of Metallica's most iconic tracks, resonating with both rock fans and broader audiences worldwide.",
     },
     {
       title: "Africa",
@@ -44,19 +64,28 @@ document.addEventListener("DOMContentLoaded", function () {
       src: "./data/africa.mp3",
       artist: "Toto",
       year: 1982,
+      isVerified: true,
+      followers: 12,
+      monthlyListeners: 1500,
+      description:
+        '"Africa" by Toto is a timeless pop-rock classic, loved for its uplifting melody, rich harmonies, and unforgettable chorus. The song blends rock with world music influences, creating a sound that feels both nostalgic and universally appealing.',
     },
     {
-      title: "Carry On Wayward Son",
-      duration: "5:24",
-      thumbnail:
-        "https://cdn-images.dzcdn.net/images/cover/3d01ed3162eb6f05659971155eec7336/500x500.jpg",
-      src: "./data/carry-on-wayward-son.mp3",
-      artist: "Kansas",
+      title: "Science Documentary",
+      duration: "2:07",
+      thumbnail: "./data/preview-img-3.jpg",
+      src: "./data/track3.mp3",
+      artist: "Lexin_Music",
       year: 1976,
+      isVerified: false,
+      followers: 12,
+      monthlyListeners: 1500,
+      description:
+        '"Science Documentary" by Lexin_Music is an intriguing audio experience that takes listeners on a journey through the wonders of science. With its captivating narration and immersive sound design, the documentary explores various scientific topics, making complex ideas accessible and engaging for all.',
     },
   ];
 
-  // DOM references
+  //------------------ DOM references --------------------
   const songList = document.getElementById("song-list");
   const thumbnail = document.getElementById("thumbnail");
   const shuffleBtn = document.getElementById("shuffle");
@@ -70,8 +99,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const volumeControl = document.getElementById("volume");
   const trackTitle = document.getElementById("player-title");
   const trackDescription = document.getElementById("player-description");
-  const modal = document.getElementById("popup-modal");
+
+  //-------------------- Popup modal JS section -------------------------------
+  const previewModal = document.getElementById("popup-modal");
+  const previewDescription = document.getElementById("preview-description");
+  const previewImg = document.getElementById("preview-image");
+  const previewArtist = document.getElementById("preview-artist");
+  const followerCount = document.getElementById("follower-count");
+  const listenerCount = document.getElementById("listener-count");
   const closeModal = document.getElementById("close-modal");
+  //----------------------------------------------------------------------------
 
   let currentSongIndex = 0;
   let audio = new Audio();
@@ -81,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let isShuffle = false;
   let shuffledSongs = [...songs]; // spread operator to copy from original list
 
-  // Shuffle button event listener
+  // ------------------ Shuffle button event listener ----------------
   shuffleBtn.addEventListener("click", () => {
     isShuffle = !isShuffle;
 
@@ -122,8 +159,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // ------------------------------------------- //
-  // Playback Speed Dropdown
+  // ---------------End of Shuffle button event listener --------------- //
+
+  // ------------------ Playback Speed Dropdown ------------------
   const speedBtn = document.getElementById("speed-btn");
   const caret = speedBtn.querySelector(".caret");
   const speedOptions = document.getElementById("speed-options");
@@ -155,9 +193,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ------------------------------------------- //
+  // -------------End of Playback Speed Dropdown --------------- //
 
-  // Time Formatting
+  // ------------------- Time Formatting -------------------
   function formatTime(seconds) {
     if (isNaN(seconds)) return "00:00";
     const minutes = Math.floor(seconds / 60);
@@ -167,14 +205,15 @@ document.addEventListener("DOMContentLoaded", function () {
       .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   }
 
-  // Update Play/Pause button
+  // ------------------- Update Play/Pause button -------------------
   const updatePlayPauseButton = (isPlaying) => {
     playPauseBtn.innerHTML = isPlaying
       ? '<img src="./assets/icons/play-button.svg" alt="Play">'
       : '<img src="./assets/icons/pause-button.svg" alt="Pause">';
   };
+  // -------------------End of Update Play/Pause button -------------------
 
-  // Play or Pause song
+  // -------------------- Play or Pause song --------------------
   function playPause() {
     if (audio.paused) {
       audio.play();
@@ -184,8 +223,9 @@ document.addEventListener("DOMContentLoaded", function () {
       updatePlayPauseButton(false);
     }
   }
+  // -------------------End of Play or Pause song -------------------
 
-  // Highlight the currently playing song
+  // --------------------- Highlight the currently playing song ---------------------
   function highlightCurrentSong() {
     const allItems = document.querySelectorAll(".item-container");
 
@@ -219,7 +259,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+  // --------------------- End of Highlight the currently playing song ----------------
 
+  // --------------------- Render Song List ---------------------
   function renderSongList() {
     songList.innerHTML = "";
 
@@ -290,8 +332,9 @@ document.addEventListener("DOMContentLoaded", function () {
       songList.appendChild(itemContainer);
     });
   }
+  // --------------------- End of Render Song List ---------------------
 
-  // Update progress BAR
+  // --------------- Update progress bar ---------------
   function updateProgress() {
     if (audio.duration) {
       progress.value = audio.currentTime;
@@ -300,8 +343,9 @@ document.addEventListener("DOMContentLoaded", function () {
       leftTime.textContent = formatTime(audio.duration - audio.currentTime);
     }
   }
+  // ---------------End of Update progress bar ---------------
 
-  //Load song function
+  // ---------------- Load song function ----------------
   function loadSong(index) {
     const list = isShuffle ? shuffledSongs : songs;
     const currentSong = list[index];
@@ -340,7 +384,7 @@ document.addEventListener("DOMContentLoaded", function () {
     highlightCurrentSong();
   });
 
-  // Init
+  // Initialization
   renderSongList();
   loadSong(0);
 
@@ -367,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function () {
     highlightCurrentSong();
   });
 
-  // Repeat Button
+  // --------------------- Repeat Button ---------------------
   repeatBtn.addEventListener("click", () => {
     isRepeat = !isRepeat;
 
@@ -384,22 +428,36 @@ document.addEventListener("DOMContentLoaded", function () {
       : '<img src="./assets/icons/loop.svg" alt="Repeat Off">';
   });
 
-  // ===== Popup Modal Functionality =====
+  // --------------- Popup Modal Functionality ---------------
 
-  // Open modal when thumbnail clicked
-  thumbnail.addEventListener("click", () => {
-    modal.style.display = "flex";
-  });
+  // Open modal
+  function openModalWindow() {
+    previewModal.style.display = "flex";
+    const currentSong = songs[currentSongIndex];
+    previewArtist.textContent = currentSong.artist;
+    followerCount.textContent = currentSong.followers;
+    listenerCount.innerText = currentSong.monthlyListeners;
+    previewDescription.innerText = currentSong.description;
+    previewImg.src = currentSong.thumbnail;
+
+    // Verification tick
+    if (!currentSong.isVerified) {
+      document.getElementById("verified").style.display = "none";
+    } else {
+      document.getElementById("verified").style.display = "flex";
+    }
+  }
+  thumbnail.addEventListener("click", openModalWindow);
 
   // Close modal when close button clicked
   closeModal.addEventListener("click", () => {
-    modal.style.display = "none";
+    previewModal.style.display = "none";
   });
 
   // Close modal if user clicks outside modal-content
   window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
+    if (e.target === previewModal) {
+      previewModal.style.display = "none";
     }
   });
   // End of Popup Modal Section

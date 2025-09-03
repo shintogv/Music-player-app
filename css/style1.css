@@ -312,43 +312,43 @@ input[type="range"] {
 
 /* ===== Modal ===== */
 .popup-modal {
-  display: none; /* hidden by default */
+  display: none;
   position: fixed;
-  inset: 0; /* top, right, bottom, left = 0 */
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 1000;
   justify-content: center;
-  align-items: center; /* <-- this centers it */
+  align-items: center;
 }
 
 .modal-content {
-  position: relative; /* make it the anchor for .close */
   background: #fff;
   width: 90%;
-  max-width: 700px;
+  max-width: 600px; /* limit modal size */
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  animation: fadeInScale 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 15px;
 }
 
-.modal-image-container {
-  position: relative;
-}
-
-.modal-image-container img {
-  display: block;
+#preview-image {
   width: 100%;
-  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+  border-radius: 12px 12px 0 0;
 }
 
 .close {
   position: absolute;
-  top: 45px; /* moved down */
-  right: 16px; /* moved inward */
+  top: 20px;
+  right: 16px;
   cursor: pointer;
-  font-size: 22px; /* balanced size */
-  color: #333; /* visible on white background */
+  font-size: 22px;
+  color: #333;
   background: none;
   border-radius: 50%;
   width: 28px;
@@ -361,43 +361,67 @@ input[type="range"] {
 }
 
 .verified-badge {
-  position: absolute;
-  bottom: 72px;
-  left: 35px;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--Accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.verified-badge img {
+  width: 16px;
+  height: 16px;
 }
 
 #preview-artist {
-  position: absolute;
-  bottom: 11px;
-  left: 35px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: 500;
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #121212;
+  text-align: center;
 }
 
 #previewDetails {
+  display: flex; /* <-- side by side */
+  gap: 20px;
   padding: 20px;
-  max-height: 300px;
-  overflow-y: auto;
 }
 
 #follower-count,
 #listener-count {
-  color: #121212;
-  font-weight: 700;
-  margin-top: 36px;
-  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 6px 0 2px;
 }
 
 #preview-description {
-  color: #012345;
-  font-size: 12px;
-  font-weight: 400;
+  flex: 1; /* takes remaining space */
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
   text-align: justify;
-  line-height: 150%;
+}
+
+.preview-status {
+  flex: 0 0 180px; /* fixed width left column */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.preview-status h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #121212;
+  margin: 0;
+}
+
+.preview-status p {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
 }
 
 /* Modal Animation */
